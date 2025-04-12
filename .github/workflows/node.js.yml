@@ -8,14 +8,13 @@ on:
     branches: [main, dev/*]
   pull_request:
     branches: [main, dev/*]
-
-defaults:
-      run:
-         working-directory: ./front
          
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+         working-directory: Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD/front
         
     strategy:
       matrix:
