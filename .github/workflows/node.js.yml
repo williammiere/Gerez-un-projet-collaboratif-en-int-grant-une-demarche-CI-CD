@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-         working-directory: Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD/front
+         working-directory: front
         
     strategy:
       matrix:
@@ -22,6 +22,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - run: ls -a
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
