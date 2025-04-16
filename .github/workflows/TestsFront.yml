@@ -31,5 +31,5 @@ jobs:
         cache-dependency-path: 'front/package-lock.json'
     - run: npm ci
     - run: npm run test:prod
-    - run: ng ng add @cypress/schematic
+    - run: ng add @cypress/schematic
     - run: npm run e2e
