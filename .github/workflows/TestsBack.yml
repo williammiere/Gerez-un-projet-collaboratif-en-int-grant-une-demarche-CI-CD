@@ -1,0 +1,25 @@
+name: Tests Back-End
+
+on:
+  push:
+    branches: [main, dev/*]
+  pull_request:
+    branches: [main, dev/*]
+         
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+         working-directory: back
+
+
+    - uses: actions/checkout@v4
+    - name: actions/setup-java@v4.4.0
+    with:
+          java-version: 21
+          distribution: "temurin"
+          cache: "maven"
+    - run: mvn clean install
+    - run: mvn clean test
+    - run: mvn jacoco:report
