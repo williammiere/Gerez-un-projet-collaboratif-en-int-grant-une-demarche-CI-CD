@@ -31,3 +31,6 @@ jobs:
         cache-dependency-path: 'front/package-lock.json'
     - run: npm ci
     - run: npm run test:prod
+    - uses: SonarSource/sonarqube-scan-action@v5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
