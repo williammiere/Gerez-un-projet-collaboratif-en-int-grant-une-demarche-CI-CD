@@ -21,5 +21,4 @@ jobs:
         distribution: "temurin"
         cache: "maven"
     - run: mvn clean install
-    - run: mvn clean test
     - run: mvn jacoco:report
