@@ -33,6 +33,6 @@ jobs:
     - run: npm run test:prod
     - uses: SonarSource/sonarqube-scan-action@v5
       env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONT }}
+        SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
       with:
         projectBaseDir: front 
