@@ -30,7 +30,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: 'front/package-lock.json'
     - run: npm install
-    - run: npm run test
+    - run: npm run test:prod
     - uses: SonarSource/sonarcloud-github-action@master
       with:
           args: >
