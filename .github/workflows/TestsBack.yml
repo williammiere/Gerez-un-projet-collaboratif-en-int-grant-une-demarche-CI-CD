@@ -38,4 +38,4 @@ jobs:
     - name: Build and analyze
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_BACK }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=williammiere_gerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-back
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=williammiere_githubgerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-back
