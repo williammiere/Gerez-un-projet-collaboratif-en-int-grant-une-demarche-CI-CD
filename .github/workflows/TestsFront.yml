@@ -29,18 +29,18 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: 'front/package-lock.json'
-    - run: npm ci
-    - run: npm run test:prod
-    - run: ls -a
-    - uses: actions/upload-artifact@v4
+    - run: npm install
+    - run: npm run test
+    - uses: SonarSource/sonarcloud-github-action@master
       with:
-        name: karma-coverage-report
-        path: front/coverage/bobapp/lcov-report/
-    - uses: SonarSource/sonarqube-scan-action@v5
+          args: >
+            -Dsonar.organization=williammiere
+            -Dsonar.projectKey=williammiere_gerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-front
+            -Dsonar.sources=front/src
+            -Dsonar.tests=front/src
+            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov-report/lcov.info
+            -Dsonar.ts.tslintconfigpath=tslint.json
+            -Dsonar.exclusions=front/**/node_modules/**,**/assets/**,**/*.spec.ts
+            -Dsonar.test.inclusions=front/**/*.spec.ts
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
-      with:
-        projectBaseDir: front
-        args: >
-            -Dsonar.sources=src/app
-            -Dsonar.javascript.lcov.reportPaths=coverage/bobapp/lcov.info
