@@ -34,12 +34,12 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: karma-coverage-report
-        path: front/coverage/bobapp/lcov-report/
+        path: front/coverage/*/lcov-report/
     - uses: SonarSource/sonarqube-scan-action@v5
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
       with:
-        projectBaseDir: front
+        projectBaseDir: .
         args: >
             -Dsonar.sources=src/app
             -Dsonar.javascript.lcov.reportPaths=coverage/bobapp/lcov.info
