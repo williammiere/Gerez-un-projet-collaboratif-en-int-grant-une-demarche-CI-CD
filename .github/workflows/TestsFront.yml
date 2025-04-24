@@ -31,8 +31,15 @@ jobs:
         cache-dependency-path: 'front/package-lock.json'
     - run: npm ci
     - run: npm run test:prod
+    - uses: actions/upload-artifact@v4
+      with:
+        name: karma-coverage-report
+        path: front/coverage/bobapp/lcov-report/
     - uses: SonarSource/sonarqube-scan-action@v5
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
       with:
-        projectBaseDir: front 
+        projectBaseDir: front
+        args: >
+            -Dsonar.sources=src/app
+            -Dsonar.javascript.lcov.reportPaths=coverage/bobapp/lcov.info
