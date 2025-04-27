@@ -2,7 +2,7 @@ name: Docker
 
 on:
   workflow_run:
-    workflows: ["TestsFront", "TestsBack"]
+    workflows: ["Tests Front-End", "Tests Back-End"]
     types:
       - completed
 
