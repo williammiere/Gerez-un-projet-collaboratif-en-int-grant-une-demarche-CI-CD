@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.openclassrooms</groupId>
-	<artifactId>bobapp</artifactId>
+	<artifactId>Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-FRONT</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bobapp</name>
+	<name>Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-BACK</name>
 	<description>L'application de joke par excellence !</description>
 	<properties>
 		<java.version>11</java.version>
@@ -23,7 +23,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
