@@ -5,9 +5,9 @@ name: CI-CD
 
 on:
   push:
-    branches: [main, dev/*]
+    branches: [main, dev]
   pull_request:
-    branches: [main, dev/*] # Runs on pull requests to the main and dev branches
+    branches: [main, dev] # Runs on pull requests to the main and dev branches
          
 jobs:
   test-front:
@@ -31,7 +31,7 @@ jobs:
         node-version: ${{ matrix.node-version }} # Specifies the Node.js version to use
         cache: 'npm' # Caches npm dependencies
         cache-dependency-path: 'front/package-lock.json' # Path to the package-lock.json for caching
-    - run: npm install
+    - run: npm ci
 
     - name: Run front tests in production mode
       run: npm run test:prod
