@@ -32,8 +32,6 @@ jobs:
     - name: Run front tests
       run: npm run test -- --browsers=ChromeHeadless --watch=false --code-coverage # Runs the tests and generates a code coverage report
 
-    - run: ls -a -R coverage # Lists the contents of the coverage directory
-
     - name: Send results to SonarCloud
       uses: SonarSource/sonarcloud-github-action@master
       env:
