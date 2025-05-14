@@ -36,6 +36,8 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
+      with:
+        projectBaseDir: front/
 
   test-back:
     runs-on: ubuntu-latest
