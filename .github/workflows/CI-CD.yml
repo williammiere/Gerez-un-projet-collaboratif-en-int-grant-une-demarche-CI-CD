@@ -5,10 +5,10 @@ name: CI-CD
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
-    branches: [main, dev] # Runs on pull requests to the main and dev branches
-         
+    branches: [main] # Runs on pull requests to the main branch
+
 jobs:
   test-front:
     runs-on: ubuntu-latest
@@ -16,38 +16,24 @@ jobs:
       run:
          working-directory: front
         
-    strategy:
-      matrix:
-        node-version: [22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - name: Checkout code # Downloads the files from the repository
       uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }} # Installs Node.js
+    - name: Use Node.js 22.x # Installs Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }} # Specifies the Node.js version to use
+        node-version: 22.x # Specifies the Node.js version to use
         cache: 'npm' # Caches npm dependencies
         cache-dependency-path: 'front/package-lock.json' # Path to the package-lock.json for caching
     - run: npm ci
 
-    - name: Run front tests in production mode
-      run: npm run test:prod
+    - name: Run front tests
+      run: npm run test --watch=false --code-coverage # Runs the tests and generates a code coverage report
 
     - name: Send results to SonarCloud
       uses: SonarSource/sonarcloud-github-action@master
-      with:
-          args: > # Configures SonarCloud parameters, setting the path to coverage reports
-            -Dsonar.organization=williammiere
-            -Dsonar.projectKey=williammiere_gerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-front
-            -Dsonar.sources=front/src
-            -Dsonar.tests=front/src
-            -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov-report/lcov.info
-            -Dsonar.ts.tslintconfigpath=tslint.json
-            -Dsonar.exclusions=front/**/node_modules/**,**/assets/**,**/*.spec.ts
-            -Dsonar.test.inclusions=front/**/*.spec.ts
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_FRONT }}
 
@@ -85,11 +71,11 @@ jobs:
     - name: Build and analyze # Build the project and send the results to SonarCloud
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_BACK }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=williammiere_githubgerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-back
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
   build-and-push:
     needs: [test-front, test-back] # Only run if both tests jobs were successful
-    if: ${{ success() }} 
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
 
     steps:
