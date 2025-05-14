@@ -73,7 +73,7 @@ jobs:
     - name: Build and analyze # Build the project and send the results to SonarCloud
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_SECRET_BACK }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=williammiere_githubgerez-un-projet-collaboratif-en-int-grant-une-demarche-ci-cd-back
 
   build-and-push:
     needs: [test-front, test-back] # Only run if both tests jobs were successful
