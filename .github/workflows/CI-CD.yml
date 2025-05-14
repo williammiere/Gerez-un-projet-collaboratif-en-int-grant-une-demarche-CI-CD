@@ -45,7 +45,6 @@ jobs:
             -Dsonar.sources=front/src
             -Dsonar.tests=front/src
             -Dsonar.typescript.lcov.reportPaths=front/coverage/bobapp/lcov-report/lcov.info
-            -Dsonar.ts.tslintconfigpath=tslint.json
             -Dsonar.exclusions=front/**/node_modules/**,**/assets/**,**/*.spec.ts
             -Dsonar.test.inclusions=front/**/*.spec.ts
       env:
