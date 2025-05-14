@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.openclassrooms</groupId>
-	<artifactId>Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-FRONT</artifactId>
+	<artifactId>Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-BACK</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD-BACK</name>
 	<description>L'application de joke par excellence !</description>
